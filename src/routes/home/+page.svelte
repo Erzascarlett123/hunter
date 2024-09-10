@@ -24,7 +24,7 @@
     }
 </style>
 
-<body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen">
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 h-screen">
     <!-- Navbar -->
     <nav class="bg-white shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
