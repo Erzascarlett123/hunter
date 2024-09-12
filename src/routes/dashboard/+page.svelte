@@ -212,32 +212,38 @@
             </button>
         </form>
 
-        <div class="overflow-x-auto">
-            <table class="w-full table-auto mt-8 border-collapse border border-gray-300">
-                <thead class="bg-gray-200 text-gray-700">
-                    <tr>
-                        <th class="px-3 py-2 text-left border-b">Nama</th>
-                        <th class="px-3 py-2 text-left border-b">Kelas</th>
-                        <th class="px-3 py-2 text-left border-b">Status</th>
-                        <th class="px-3 py-2 text-left border-b">Tanggal Pengumpulan</th>
-                        <th class="px-3 py-2 text-left border-b">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {#each students as student (student.name)}
-                    <tr class="border-t border-gray-300">
-                        <td class="px-4 py-2 text-left border-b">{student.name}</td>
-                        <td class="px-4 py-2 text-left border-b">{student.kelas}</td>
-                        <td class="px-4 py-2 text-left border-b">{student.submitted ? 'Sudah' : 'Belum'}</td>
-                        <td class="px-4 py-2 text-left border-b">{student.date ? student.date : '-'}</td>
-                        <td class="px-4 py-2 text-left border-b">
-                            <button on:click={() => deleteStudent(student.name)} class="text-red-600 hover:text-red-800">
-                                Delete
-                            </button>
-                        </td>
-                    </tr>
-                    {/each}
-                </tbody>
-            </table>
-        </div>
+        <!-- Displaying List of Students -->
+<table class="w-full table-auto mt-8 border-collapse border border-gray-300">
+    <thead class="bg-gray-200 text-gray-700">
+        <tr>
+            <th class="px-3 py-2 text-left border-b">Nama</th>
+            <th class="px-3 py-2 text-left border-b">Kelas</th>
+            <th class="px-3 py-2 text-left border-b">Status</th>
+            <th class="px-3 py-2 text-left border-b">Tanggal Pengumpulan</th>
+            <th class="px-3 py-2 text-left border-b">Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {#each students as student (student.name)}
+        <tr class="border-t border-gray-300">
+            <td class="px-4 py-2 text-left border-b">{student.name}</td>
+            <td class="px-4 py-2 text-left border-b">{student.kelas}</td>
+            <td class="px-4 py-2 text-left border-b">
+                {#if student.submitted}
+                    <span class="text-green-600">✔️</span> <!-- Green checkmark -->
+                {:else}
+                    <span class="text-red-600">❌</span> <!-- Red cross -->
+                {/if}
+            </td>
+            <td class="px-4 py-2 text-left border-b">{student.date ? student.date : '-'}</td>
+            <td class="px-4 py-2 text-left border-b">
+                <button on:click={() => deleteStudent(student.name)} class="text-red-600 hover:text-red-800">
+                    Delete
+                </button>
+            </td>
+        </tr>
+        {/each}
+    </tbody>
+</table>
+
 </body>
