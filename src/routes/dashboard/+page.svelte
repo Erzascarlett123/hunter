@@ -13,7 +13,6 @@
     let newStudentSubmitted = false;
     let newStudentDate = '';
 
-    // Function to add a new student
     function addStudent() {
         if (!newStudentName || !newStudentClass) {
             alert('Please fill in the required fields');
@@ -31,14 +30,12 @@
             date: newStudentDate || null 
         }];
 
-        // Reset input fields
         newStudentName = '';
         newStudentClass = '';
         newStudentSubmitted = false;
         newStudentDate = '';
     }
 
-    // Function to delete a student
     function deleteStudent(name) {
         students = students.filter(student => student.name !== name);
     }
@@ -51,10 +48,9 @@
         event.preventDefault();
         loading = true;
 
-        // Simulate delay for loading
         setTimeout(() => {
             window.location.href = event.target.href;
-        }, 500); // Delay 0.5 seconds before navigating
+        }, 500);
     }
 </script>
 
@@ -65,7 +61,7 @@
     .mobile-menu.show {
         display: block;
         opacity: 1;
-        max-height: 500px; /* Adjust as needed */
+        max-height: 500px;
     }
     .mobile-menu.hide {
         display: block;
@@ -78,7 +74,6 @@
         cursor: pointer;
     }
 
-    /* Loading Spinner */
     .loading-spinner {
         border: 4px solid rgba(0, 0, 0, 0.1);
         border-left-color: #4a90e2;
@@ -105,24 +100,55 @@
         justify-content: center;
         z-index: 9999;
     }
+
+    /* Responsive Table */
+    @media (max-width: 768px) {
+        table {
+            font-size: 0.875rem; /* Smaller font size for tablets and mobile */
+        }
+        th, td {
+            padding: 0.5rem; /* Reduce padding to fit content better */
+        }
+    }
+
+    @media (max-width: 480px) {
+        table {
+            font-size: 0.75rem; /* Even smaller font size for mobile */
+        }
+        th, td {
+            padding: 0.25rem; /* Further reduce padding for small screens */
+        }
+    }
+
+    /* Adjust Form Input and Button Sizes */
+    @media (max-width: 768px) {
+        input[type="text"], input[type="date"], button {
+            font-size: 0.875rem; /* Smaller font size for inputs and buttons */
+            padding: 0.75rem; /* Adjust padding */
+        }
+    }
+
+    @media (max-width: 480px) {
+        input[type="text"], input[type="date"], button {
+            font-size: 0.75rem; /* Even smaller font size */
+            padding: 0.5rem; /* Adjust padding */
+        }
+    }
+
 </style>
 
 <body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col">
 
     {#if loading}
-    <!-- Loading Spinner -->
     <div class="loading-overlay">
         <div class="loading-spinner"></div>
     </div>
     {/if}
 
-    <!-- Navbar -->
     <nav class="bg-white shadow-lg">
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <!-- Logo -->
             <img src="/image/logo.png" alt="Logo" class="h-12 md:h-16 lg:h-20">
 
-            <!-- Nav Links for Desktop -->
             <div class="hidden md:flex items-center space-x-4">
                 <a href="/home" class="py-5 px-3 text-gray-700 hover:text-gray-900" on:click={handleClick}>Home</a>
                 <a href="/dashboard" class="py-5 px-3 text-gray-700 hover:text-gray-900" on:click={handleClick}>Dashboard</a>
@@ -130,14 +156,12 @@
                 <a href="/finishing" class="py-5 px-3 text-gray-700 hover:text-gray-900" on:click={handleClick}>Tugas</a>
             </div>
 
-            <!-- Logout Button for Desktop (Tablet & Laptop) -->
             <div class="hidden md:flex">
                 <a href="/" class="ml-auto bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700" on:click={handleClick}>
                     Logout
                 </a>
             </div>
 
-            <!-- Mobile Button -->
             <div class="md:hidden flex items-center">
                 <button on:click={toggleMenu} class="p-2">
                     <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +171,6 @@
             </div>
         </div>
 
-        <!-- Mobile Menu -->
         <div class={`mobile-menu ${isOpen ? 'show' : 'hide'} md:hidden bg-white shadow-lg`}>
             <a href="/home" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200" on:click={handleClick}>Home</a>
             <a href="/dashboard" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200" on:click={handleClick}>Dashboard</a>
@@ -157,10 +180,9 @@
         </div>
     </nav>
 
-    <div class="p-6 max-w-4xl mx-auto bg-white shadow-lg rounded-lg mt-6">
+    <div class="p-6 w-full mx-auto bg-white shadow-lg rounded-lg mt-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Daftar Siswa</h2>
     
-        <!-- Form to Add a New Student -->
         <form on:submit|preventDefault={addStudent} class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
@@ -174,7 +196,7 @@
                 </div>
                 <div>
                     <label for="submission-status" class="block text-sm font-medium text-gray-700">Sudah Mengumpulkan?</label>
-                    <input type="checkbox" id="submission-status" bind:checked={newStudentSubmitted} class="p-10 border border-gray-300 rounded-lg focus:ring-7 focus:ring-blue-500">
+                    <input type="checkbox" id="submission-status" bind:checked={newStudentSubmitted} class="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                 </div>
     
                 {#if newStudentSubmitted}
@@ -190,33 +212,32 @@
             </button>
         </form>
 
-        <!-- Displaying List of Students -->
-        <table class="min-w-full table-auto mt-8 border-collapse border border-gray-300">
-            <thead class="bg-gray-200 text-gray-700">
-                <tr>
-                    <th class="px-4 py-2 text-left border-b">Nama</th>
-                    <th class="px-4 py-2 text-left border-b">Kelas</th>
-                    <th class="px-4 py-2 text-left border-b">Status</th>
-                    <th class="px-4 py-2 text-left border-b">Tanggal Pengumpulan</th>
-                    <th class="px-4 py-2 text-left border-b">Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                {#each students as student (student.name)}
-                <tr class="border-t border-gray-300">
-                    <td class="px-4 py-2 text-left border-b">{student.name}</td>
-                    <td class="px-4 py-2 text-left border-b">{student.kelas}</td>
-                    <td class="px-4 py-2 text-left border-b">{student.submitted ? 'Sudah' : 'Belum'}</td>
-                    <td class="px-4 py-2 text-left border-b">{student.date ? student.date : '-'}</td>
-                    <td class="px-4 py-2 text-left border-b">
-                        <button on:click={() => deleteStudent(student.name)} class="text-red-600 hover:text-red-800">
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-                {/each}
-            </tbody>
-        </table>
-        
-    </div>
-</body>    
+        <div class="overflow-x-auto">
+            <table class="w-full table-auto mt-8 border-collapse border border-gray-300">
+                <thead class="bg-gray-200 text-gray-700">
+                    <tr>
+                        <th class="px-3 py-2 text-left border-b">Nama</th>
+                        <th class="px-3 py-2 text-left border-b">Kelas</th>
+                        <th class="px-3 py-2 text-left border-b">Status</th>
+                        <th class="px-3 py-2 text-left border-b">Tanggal Pengumpulan</th>
+                        <th class="px-3 py-2 text-left border-b">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {#each students as student (student.name)}
+                    <tr class="border-t border-gray-300">
+                        <td class="px-4 py-2 text-left border-b">{student.name}</td>
+                        <td class="px-4 py-2 text-left border-b">{student.kelas}</td>
+                        <td class="px-4 py-2 text-left border-b">{student.submitted ? 'Sudah' : 'Belum'}</td>
+                        <td class="px-4 py-2 text-left border-b">{student.date ? student.date : '-'}</td>
+                        <td class="px-4 py-2 text-left border-b">
+                            <button on:click={() => deleteStudent(student.name)} class="text-red-600 hover:text-red-800">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    {/each}
+                </tbody>
+            </table>
+        </div>
+</body>
