@@ -168,7 +168,7 @@
                             Instagram
                         </a>
                         <!-- WhatsApp -->
-                        <a href="https://wa.me/1234567890" class="flex items-center text-gray-700 hover:text-purple-600">
+                        <a href="https://wa.me/+62 815-1852-575" class="flex items-center text-gray-700 hover:text-purple-600">
                             <svg class="w-6 h-6 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 16.5A8.38 8.38 0 0116.5 21c-4.65 0-8.5-3.85-8.5-8.5S11.85 4 16.5 4a8.38 8.38 0 015 1.5l2 2.5-2.25 1.75A9 9 0 0012 18a8.91 8.91 0 005-3l2.25 1.75 2-2.25A8.46 8.46 0 0021 16.5z"/>
                             </svg>
