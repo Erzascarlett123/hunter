@@ -32,7 +32,7 @@
             </div>
 
             <!-- Tombol login -->
-             <a href="/home">
+             <a href="/next">
             <button type="submit"
                 class="w-full py-2 sm:py-3 text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-all duration-200 ease-in-out shadow-md transform hover:scale-105">Masuk</button>
              </a>
