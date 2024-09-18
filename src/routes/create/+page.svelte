@@ -1,5 +1,5 @@
 <script>
-  import { auth } from '/users/User/hunter/src/firebase'; // Sesuaikan path sesuai kebutuhan
+  import { auth } from '../../firebase'; // Sesuaikan path sesuai kebutuhan
   import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
   
   let email = '';

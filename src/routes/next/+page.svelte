@@ -1,5 +1,5 @@
 <script>
-    import { userName, userClass } from '/Users/User/hunter/src/stores/userStore'; // Path yang benar
+    import { userName, userClass } from '../../stores/userStore'; // Path yang benar
     import { goto } from '$app/navigation'; // Gunakan sveltekit's goto untuk navigasi
   
     let name = '';
