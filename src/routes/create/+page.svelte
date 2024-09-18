@@ -50,7 +50,7 @@
       successMessage = 'Logged in successfully with Google!';
       
       // Redirect setelah login dengan Google berhasil
-      window.location.href = '/'; // Ubah ke halaman yang Anda inginkan
+      window.location.href = '/next'; // Ubah ke halaman yang Anda inginkan
     } catch (error) {
       console.error('Error logging in with Google:', error);
       errorMessage = error.message;
