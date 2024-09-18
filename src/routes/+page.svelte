@@ -43,7 +43,7 @@
 
             <!-- Link daftar -->
             <div class="text-xs sm:text-sm text-center text-gray-500">
-                <p>Belum punya akun? <a href="/create" class="text-teal-500 hover:text-teal-600 font-semibold">Daftar sekarang !!</a></p>
+                <p>Belum punya akun? <a href="/create" class="text-teal-500 hover:text-teal-600 font-semibold">Daftar sekarang</a></p>
             </div>
         </div>
     </div>
