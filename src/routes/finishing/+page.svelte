@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { fade } from 'svelte/transition';
     let isOpen = false;
     let loading = false;
@@ -8,16 +8,20 @@
     }
 
     // Function to handle link clicks
-    function handleClick(event) {
+    function handleClick(event: MouseEvent) {
         event.preventDefault();
         loading = true;
 
         // Simulate delay for loading (you can remove the setTimeout in production)
         setTimeout(() => {
-            window.location.href = event.target.href;
-        }, 500); // Delay 1 second before navigating
+            const target = event.target as HTMLAnchorElement; // Type assertion
+            if (target && target instanceof HTMLAnchorElement) {
+                window.location.href = target.href;
+            }
+        }, 500); // Delay 0.5 seconds before navigating
     }
 </script>
+
 
 <style>
     .mobile-menu {

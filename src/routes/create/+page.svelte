@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   import { auth } from '../../firebase'; // Sesuaikan path sesuai kebutuhan
   import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
-  
+
   let email = '';
   let password = '';
   let confirmPassword = '';
@@ -11,14 +11,14 @@
   const provider = new GoogleAuthProvider(); // Menambahkan penyedia Google Auth
 
   // Fungsi untuk menangani pendaftaran menggunakan email dan password
-  async function handleSubmit(event) {
+  async function handleSubmit(event: Event) {
     event.preventDefault();
-  
+
     if (password !== confirmPassword) {
       errorMessage = 'Passwords do not match';
       return;
     }
-  
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -36,9 +36,13 @@
       setTimeout(() => {
         window.location.href = '/'; // Ubah ke halaman yang Anda inginkan setelah verifikasi
       }, 3000);
-    } catch (error) {
+    } catch (error: unknown) { // Ubah tipe error di sini
       console.error('Error creating account:', error);
-      errorMessage = error.message;
+      if (error instanceof Error) {
+        errorMessage = error.message; // Ambil message jika error adalah instance dari Error
+      } else {
+        errorMessage = 'An unknown error occurred.';
+      }
     }
   }
 
@@ -48,12 +52,16 @@
       const result = await signInWithPopup(auth, provider);
       console.log('Google User:', result.user);
       successMessage = 'Logged in successfully with Google!';
-      
+
       // Redirect setelah login dengan Google berhasil
       window.location.href = '/next'; // Ubah ke halaman yang Anda inginkan
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Error logging in with Google:', error);
-      errorMessage = error.message;
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else {
+        errorMessage = 'An unknown error occurred.';
+      }
     }
   }
 </script>

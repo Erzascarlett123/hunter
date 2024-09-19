@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import { fade } from 'svelte/transition';
     let isOpen = false;
     let loading = false;
@@ -7,12 +7,12 @@
         { name: 'Budi', kelas: '11B', submitted: false, date: null },
         { name: 'Citra', kelas: '12C', submitted: true, date: '2024-09-02' }
     ];
-
+  
     let newStudentName = '';
     let newStudentClass = '';
     let newStudentSubmitted = false;
     let newStudentDate = '';
-
+  
     function addStudent() {
         if (!newStudentName || !newStudentClass) {
             alert('Please fill in the required fields');
@@ -22,34 +22,34 @@
             alert('Please provide the submission date');
             return;
         }
-
+  
         students = [...students, { 
             name: newStudentName, 
             kelas: newStudentClass, 
             submitted: newStudentSubmitted, 
             date: newStudentDate || null 
         }];
-
+  
         newStudentName = '';
         newStudentClass = '';
         newStudentSubmitted = false;
         newStudentDate = '';
     }
-
-    function deleteStudent(name) {
+  
+    function deleteStudent(name: string) {
         students = students.filter(student => student.name !== name);
     }
-
+  
     function toggleMenu() {
         isOpen = !isOpen;
     }
-
-    function handleClick(event) {
+  
+    function handleClick(event: MouseEvent) {
         event.preventDefault();
         loading = true;
-
+  
         setTimeout(() => {
-            window.location.href = event.target.href;
+            window.location.href = (event.target as HTMLAnchorElement).href;
         }, 500);
     }
 </script>
@@ -134,11 +134,9 @@
             padding: 0.5rem; /* Adjust padding */
         }
     }
-
 </style>
 
 <body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col">
-
     {#if loading}
     <div class="loading-overlay">
         <div class="loading-spinner"></div>
@@ -182,14 +180,14 @@
 
     <div class="p-6 w-full mx-auto bg-white shadow-lg rounded-lg mt-6">
         <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-700 mb-6">Daftar Siswa</h2>
-    
+        
         <form on:submit|preventDefault={addStudent} class="space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div>
                     <label for="student-name" class="block text-sm font-medium text-gray-700">Nama Siswa</label>
                     <input type="text" id="student-name" bind:value={newStudentName} class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Masukkan nama siswa">
                 </div>
-    
+
                 <div>
                     <label for="student-class" class="block text-sm font-medium text-gray-700">Kelas</label>
                     <input type="text" id="student-class" bind:value={newStudentClass} class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Masukkan kelas siswa">
@@ -198,7 +196,7 @@
                     <label for="submission-status" class="block text-sm font-medium text-gray-700">Sudah Mengumpulkan?</label>
                     <input type="checkbox" id="submission-status" bind:checked={newStudentSubmitted} class="p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
                 </div>
-    
+
                 {#if newStudentSubmitted}
                 <div class="md:col-span-2">
                     <label for="submission-date" class="block text-sm font-medium text-gray-700">Tanggal Pengumpulan</label>
@@ -206,44 +204,32 @@
                 </div>
                 {/if}
             </div>
-    
-            <button type="submit" class="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
-                Tambah Siswa
-            </button>
+            <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">Tambah Siswa</button>
         </form>
 
-        <!-- Displaying List of Students -->
-<table class="w-full table-auto mt-8 border-collapse border border-gray-300">
-    <thead class="bg-gray-200 text-gray-700">
-        <tr>
-            <th class="px-3 py-2 text-left border-b">Nama</th>
-            <th class="px-3 py-2 text-left border-b">Kelas</th>
-            <th class="px-3 py-2 text-left border-b">Status</th>
-            <th class="px-3 py-2 text-left border-b">Tanggal Pengumpulan</th>
-            <th class="px-3 py-2 text-left border-b">Aksi</th>
-        </tr>
-    </thead>
-    <tbody>
-        {#each students as student (student.name)}
-        <tr class="border-t border-gray-300">
-            <td class="px-4 py-2 text-left border-b">{student.name}</td>
-            <td class="px-4 py-2 text-left border-b">{student.kelas}</td>
-            <td class="px-4 py-2 text-left border-b">
-                {#if student.submitted}
-                    <span class="text-green-600">✔️</span> <!-- Green checkmark -->
-                {:else}
-                    <span class="text-red-600">❌</span> <!-- Red cross -->
-                {/if}
-            </td>
-            <td class="px-4 py-2 text-left border-b">{student.date ? student.date : '-'}</td>
-            <td class="px-4 py-2 text-left border-b">
-                <button on:click={() => deleteStudent(student.name)} class="text-red-600 hover:text-red-800">
-                    Delete
-                </button>
-            </td>
-        </tr>
-        {/each}
-    </tbody>
-</table>
-
+        <table class="w-full table-auto mt-8 border-collapse border border-gray-300">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border border-gray-300 p-2">Nama</th>
+                    <th class="border border-gray-300 p-2">Kelas</th>
+                    <th class="border border-gray-300 p-2">Status</th>
+                    <th class="border border-gray-300 p-2">Tanggal Pengumpulan</th>
+                    <th class="border border-gray-300 p-2">Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                {#each students as student}
+                <tr>
+                    <td class="border border-gray-300 p-2">{student.name}</td>
+                    <td class="border border-gray-300 p-2">{student.kelas}</td>
+                    <td class="border border-gray-300 p-2">{student.submitted ? '✅' : '❌'}</td>
+                    <td class="border border-gray-300 p-2">{student.date || '-'}</td>
+                    <td class="border border-gray-300 p-2">
+                        <button on:click={() => deleteStudent(student.name)} class="text-red-500 hover:underline">Hapus</button>
+                    </td>
+                </tr>
+                {/each}
+            </tbody>
+        </table>
+    </div>
 </body>

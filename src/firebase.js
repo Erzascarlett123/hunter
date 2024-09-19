@@ -1,6 +1,7 @@
 // src/firebaseConfig.js
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { Database } from 'firebase/database'
 
 // Konfigurasi Firebase Anda
 const firebaseConfig = {
