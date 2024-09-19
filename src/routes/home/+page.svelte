@@ -1,9 +1,6 @@
 <script lang="ts">
-  import { userName, userClass } from '../../stores/userStore'; // Path yang benar
-
   let isOpen = false;
-  let loading = false;
-
+  
   let classes = [
     { name: 'Mathematics', description: 'Algebra and Geometry' },
     { name: 'Science', description: 'Physics and Chemistry' },
@@ -21,18 +18,16 @@
   }
 
   function handleClick(event: Event) {
-  event.preventDefault();
-  loading = true;
+    event.preventDefault();
+    const target = event.target as HTMLAnchorElement; // Type assertion
 
-  const target = event.target as HTMLAnchorElement; // Type assertion
-
-  // Cek apakah target ada dan memiliki href
-  if (target && target.href) {
-    setTimeout(() => {
-      window.location.href = target.href;
-    }, 500);
+    // Cek apakah target ada dan memiliki href
+    if (target && target.href) {
+      setTimeout(() => {
+        window.location.href = target.href;
+      }, 500);
+    }
   }
-}
 </script>
 
 <style>
@@ -88,10 +83,9 @@
 </nav>
 
 <main class="flex-1 p-6 bg-gray-100">
-  <!-- Bagian ini akan berubah sesuai nilai dari store -->
   <section class="mb-6">
-    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Welcome, {$userName}!</h1>
-    <p class="text-gray-600 mt-2">You are in class: {$userClass}</p>
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Welcome!</h1>
+    <p class="text-gray-600 mt-2">You are in class: </p>
   </section>
 
   <!-- Classes Section -->

@@ -1,7 +1,8 @@
 // src/firebaseConfig.js
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { Database } from 'firebase/database'
+import { Database } from 'firebase/database';
+import { getFirestore } from "firebase/firestore"; 
 
 // Konfigurasi Firebase Anda
 const firebaseConfig = {
@@ -16,5 +17,6 @@ const firebaseConfig = {
 // Inisialisasi Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const database = getFirestore(app)
 
-export { auth };
+export { auth, database,};
