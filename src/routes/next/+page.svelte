@@ -1,21 +1,40 @@
 <script lang="ts">
+  import Swal from 'sweetalert2';
   import { userName, userClass } from '../../stores/userStore';
   import { goto } from '$app/navigation';
-  
+
   let name = '';
   let className = '';
-  
-  const classes = ['X', 'XI', 'XII']; // Daftar kelas yang bisa dipilih
-  
-  function handleSubmit(event: Event) { // Menambahkan tipe parameter
+  let isSubmitted = false;
+
+  const classes = ['X', 'XI', 'XII'];
+
+  function handleSubmit(event: Event) {
     event.preventDefault();
     
     // Update store
     userName.set(name);
     userClass.set(className);
-  
-    // Navigasi ke halaman home
-    goto('/home');
+
+    // SweetAlert popup
+    Swal.fire({
+      title: 'Selamat Datang!',
+      html: `<p>Nama: ${name}</p><p>Kelas: ${className}</p>`,
+      icon: 'success',
+      confirmButtonText: 'Lanjutkan',
+      timer: 3000,
+    }).then(() => {
+      // Navigasi setelah popup
+      goto('/home');
+    });
+
+    isSubmitted = true;
+  }
+
+  function resetForm() {
+    name = '';
+    className = '';
+    isSubmitted = false;
   }
 </script>
 
@@ -40,12 +59,4 @@
 
     <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 w-full">Submit</button>
   </form>
-
-  {#if name && className}
-    <div class="mt-6 text-center">
-      <h3 class="text-lg font-bold">Data yang telah diisi:</h3>
-      <p>Nama: {name}</p>
-      <p>Kelas: {className}</p>
-    </div>
-  {/if}
 </main>

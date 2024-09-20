@@ -105,7 +105,7 @@
 
             <!-- Logout Button for Desktop (Tablet & Laptop) -->
             <div class="hidden md:flex">
-                <a href="/" class="ml-auto bg-purple-600 text-white py-2 px-6 rounded-lg hover:bg-purple-700" on:click={handleClick}>
+                <a href="/" class="ml-auto bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700" on:click={handleClick}>
                     Logout
                 </a>
             </div>

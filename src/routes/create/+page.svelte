@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Swal from 'sweetalert2';
   import { auth } from '../../firebase'; // Sesuaikan path sesuai kebutuhan
   import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, sendEmailVerification } from 'firebase/auth';
 
@@ -32,14 +33,21 @@
       password = '';
       confirmPassword = '';
 
-      // Redirect ke halaman lain (misalnya halaman login atau home)
-      setTimeout(() => {
+      // SweetAlert success
+      Swal.fire({
+        title: 'Akun Berhasil Dibuat!',
+        text: 'Silakan periksa email Anda untuk verifikasi.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        timer: 3000
+      }).then(() => {
+        // Redirect setelah SweetAlert ditutup
         window.location.href = '/'; // Ubah ke halaman yang Anda inginkan setelah verifikasi
-      }, 3000);
-    } catch (error: unknown) { // Ubah tipe error di sini
+      });
+    } catch (error: unknown) { 
       console.error('Error creating account:', error);
       if (error instanceof Error) {
-        errorMessage = error.message; // Ambil message jika error adalah instance dari Error
+        errorMessage = error.message; 
       } else {
         errorMessage = 'An unknown error occurred.';
       }
@@ -53,8 +61,17 @@
       console.log('Google User:', result.user);
       successMessage = 'Logged in successfully with Google!';
 
-      // Redirect setelah login dengan Google berhasil
-      window.location.href = '/next'; // Ubah ke halaman yang Anda inginkan
+      // SweetAlert success
+      Swal.fire({
+        title: 'Login Berhasil!',
+        text: 'Anda berhasil login dengan Google.',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        timer: 3000
+      }).then(() => {
+        // Redirect setelah SweetAlert ditutup
+        window.location.href = '/next'; // Ubah ke halaman yang Anda inginkan
+      });
     } catch (error: unknown) {
       console.error('Error logging in with Google:', error);
       if (error instanceof Error) {
@@ -67,7 +84,7 @@
 </script>
 
 <main class="flex items-center justify-center h-screen bg-gray-100">
-  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border border-black border-3 shadow-[6px_6px_0px_black]">
     <h2 class="text-2xl font-bold mb-4">Create Account</h2>
 
     {#if errorMessage}
@@ -84,18 +101,23 @@
 
     <form on:submit={handleSubmit}>
       <div class="mb-4">
-        <label for="email" class="block text-gray-700">Email:</label>
-        <input type="email" id="email" bind:value={email} required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"/>
-      </div>
+        <label for="email" class="font-bold block text-gray-700">Email:</label>
+        <input type="email" id="email" bind:value={email} required 
+        class="w-full font-semibold px-3 py-2 border rounded-lg focus:outline-none focus:bg-transparent border-black 
+        border focus:shadow-[4px_4px_0px_black] transition-all duration-300 ease-in-out focus:scale-105"
+      />
+            </div>
 
       <div class="mb-4">
         <label for="password" class="block text-gray-700">Password:</label>
-        <input type="password" id="password" bind:value={password} required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"/>
+        <input type="password" id="password" bind:value={password} required class="w-full font-semibold px-3 py-2 border rounded-lg focus:outline-none focus:bg-transparent border-black 
+        border focus:shadow-[4px_4px_0px_black] transition-all duration-300 ease-in-out focus:scale-105"/>
       </div>
 
       <div class="mb-4">
         <label for="confirmPassword" class="block text-gray-700">Confirm Password:</label>
-        <input type="password" id="confirmPassword" bind:value={confirmPassword} required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"/>
+        <input type="password" id="confirmPassword" bind:value={confirmPassword} required class="w-full font-semibold px-3 py-2 border rounded-lg focus:outline-none focus:bg-transparent border-black 
+        border focus:shadow-[4px_4px_0px_black] transition-all duration-300 ease-in-out focus:scale-105"/>
       </div>
 
       <button type="submit" class="bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 w-full">Create Account</button>
