@@ -19,7 +19,11 @@
 
 <!-- Menampilkan navbar hanya jika `showNavbar` true -->
 {#if showNavbar}
-  <Navbar />
+  {#if $page.url.pathname.includes('guru')}
+    <Navbarguru />
+  {:else}
+    <Navbar />
+  {/if}
 {/if}
 
 <slot />

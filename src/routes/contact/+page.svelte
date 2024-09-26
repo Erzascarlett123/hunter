@@ -4,7 +4,6 @@
     import Swal from 'sweetalert2';
 
     let loading = false;
-    let mobileMenuVisible = false;
 
     async function handleLogout() {
         const auth = getAuth();
@@ -23,10 +22,6 @@
         } catch (error) {
             console.error('Error logging out: ', error);
         }
-    }
-
-    function toggleMobileMenu() {
-        mobileMenuVisible = !mobileMenuVisible;
     }
 
     async function navigateTo(path: string) {
@@ -64,19 +59,6 @@
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-
-    .mobile-menu {
-        display: none;
-        transform: translateY(-20px);
-        opacity: 0;
-        transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .mobile-menu.visible {
-        display: block;
-        transform: translateY(0);
-        opacity: 1;
-    }
 </style>
 
 <body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex flex-col">
@@ -85,40 +67,6 @@
             <div class="loading-spinner"></div>
         </div>
     {/if}
-
-    <nav class="bg-white shadow-lg">
-        <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-            <img src="/image/logo.png" alt="Logo" class="h-12 md:h-16 lg:h-20">
-            
-            <div class="hidden md:flex flex-grow justify-center">
-                <button on:click={() => navigateTo('/home')} class="py-5 px-3 text-gray-700 hover:text-gray-900">Home</button>
-                <button on:click={() => navigateTo('/dashboard')} class="py-5 px-3 text-gray-700 hover:text-gray-900">Dashboard</button>
-                <button on:click={() => navigateTo('/contact')} class="py-5 px-3 text-gray-700 hover:text-gray-900">Contact</button>
-                <button on:click={() => navigateTo('/finishing')} class="py-5 px-3 text-gray-700 hover:text-gray-900">Tugas</button>
-            </div>
-            
-            <div class="relative md:flex items-center">
-                <div class="hidden md:block">
-                    <button on:click={handleLogout} class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-md">Logout</button>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button on:click={toggleMobileMenu} class="p-2">
-                        <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class={`mobile-menu ${mobileMenuVisible ? 'visible' : ''} bg-white shadow-lg absolute right-0 mt-2 w-48 rounded-md overflow-hidden`}>
-            <button on:click={() => navigateTo('/home')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
-            <button on:click={() => navigateTo('/dashboard')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Dashboard</button>
-            <button on:click={() => navigateTo('/contact')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Contact</button>
-            <button on:click={() => navigateTo('/finishing')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Tugas</button>
-            <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer">Logout</button>
-        </div>
-    </nav>
 
     <!-- Main Content -->
     <section class="container mx-auto p-6 lg:p-10">
@@ -168,6 +116,7 @@
             </div>
         </div>
     </section>
+    
     <footer class="bg-white p-3 xl:p-3 sm:p-3 lg:p-3 text-center">
         <p class="text-gray-600">&copy; 2024 Your Company Name. All rights reserved.</p>
     </footer>

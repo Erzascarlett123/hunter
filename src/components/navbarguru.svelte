@@ -19,7 +19,7 @@
         try {
             await signOut(auth);
             console.log('User logged out');
-            goto('/'); 
+            goto('/login'); 
         } catch (error) {
             console.error('Error logging out: ', error);
         }
@@ -60,8 +60,8 @@
         <img src="/image/logo.png" alt="Logo" class="h-12 md:h-16 lg:h-20">
 
         <div class="navbar-center hidden md:flex flex-grow justify-center">
-            <button on:click={() => navigateTo('/home')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Home">Home</button>
-            <button on:click={() => navigateTo('/dashboard')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Dashboard">Dashboard</button>
+            <button on:click={() => navigateTo('/home guru')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Home">Home</button>
+            <button on:click={() => navigateTo('/halaman guru')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Dashboard">Dashboard</button>
         </div>
 
         <div class="relative md:flex items-center space-x-4">
@@ -79,8 +79,8 @@
     </div>
 
     <div class={`mobile-menu ${mobileMenuVisible ? 'visible' : ''} bg-white shadow-lg absolute right-0 mt-2 w-48 rounded-md overflow-hidden`}>
-        <button on:click={() => navigateTo('/home')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
-        <button on:click={() => navigateTo('/dashboard')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Dashboard</button>
+        <button on:click={() => navigateTo('/home guru')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
+        <button on:click={() => navigateTo('/halaman guru')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Dashboard</button>
         <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer">Logout</button>
     </div>
 </nav>

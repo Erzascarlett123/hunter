@@ -93,23 +93,6 @@
 </style>
 
 <body class="flex flex-col min-h-screen">
-  <nav class="bg-white shadow-lg">
-    <div class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <img src="/image/logo.png" alt="Logo" class="h-12 md:h-16 lg:h-20">
-
-      <div class="hidden md:flex items-center space-x-4">
-        <a href="/home" class="py-5 px-3 text-gray-700 hover:text-gray-900">Home</a>
-        <a href="/dashboard" class="py-5 px-3 text-gray-700 hover:text-gray-900">Dashboard</a>
-        <a href="/contact" class="py-5 px-3 text-gray-700 hover:text-gray-900">Contact</a>
-        <a href="/finishing" class="py-5 px-3 text-gray-700 hover:text-gray-900">Tugas</a>
-      </div>
-
-      <div class="hidden md:flex">
-        <a href="/" class="ml-auto bg-red-600 text-white py-2 px-6 rounded-lg hover:bg-red-700">Logout</a>
-      </div>
-    </div>
-  </nav>
-
   <main class="flex-1 p-6 bg-gray-100">
     <section>
       <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Pemberian Tugas</h1>

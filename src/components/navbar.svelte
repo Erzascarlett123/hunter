@@ -19,7 +19,7 @@
         try {
             await signOut(auth);
             console.log('User logged out');
-            goto('/'); 
+            goto('/login'); 
         } catch (error) {
             console.error('Error logging out: ', error);
         }
