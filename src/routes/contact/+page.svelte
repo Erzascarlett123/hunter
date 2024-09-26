@@ -1,5 +1,4 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
     import { getAuth, signOut } from 'firebase/auth';
     import { goto } from '$app/navigation';
     import Swal from 'sweetalert2';

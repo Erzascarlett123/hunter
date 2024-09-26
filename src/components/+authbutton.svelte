@@ -1,5 +1,3 @@
-<!-- src/components/AuthButton.svelte -->
-
 <script lang="ts">
     import { signInWithGoogle } from '../services/signup';
   
