@@ -66,7 +66,7 @@
 
         <div class="relative md:flex items-center space-x-4">
             <div class="hidden md:block">
-                <button on:click={handleLogout} class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-md">Logout</button>
+                <button on:click={handleLogout} class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-md hover:scale-110 duration-300">Logout</button>
             </div>
             <div class="md:hidden flex items-center">
                 <button on:click={() => mobileMenuVisible = !mobileMenuVisible} class="p-2">
@@ -81,6 +81,6 @@
     <div class={`mobile-menu ${mobileMenuVisible ? 'visible' : ''} bg-white shadow-lg absolute right-0 mt-2 w-48 rounded-md overflow-hidden`}>
         <button on:click={() => navigateTo('/home guru')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
         <button on:click={() => navigateTo('/halaman guru')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Dashboard</button>
-        <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer">Logout</button>
+        <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer hover:scale-110">Logout</button>
     </div>
 </nav>

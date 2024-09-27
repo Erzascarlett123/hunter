@@ -106,7 +106,7 @@
             </div>
             {#if !isLogin}
             <div class="relative">
-                <input type="password" placeholder="Confirm Password" bind:value={confirmPassword} required class="w-full px-3 sm:px-4 py-2 sm:py-3 text-gray-800 border-2 border-gray-300 rounded-lg focus:outline-none transition duration-200 ease-in-out focus:shadow-[5px_5px_0px_green]" />
+                <input type="password" placeholder="Konfirmasi Password" bind:value={confirmPassword} required class="w-full px-3 sm:px-4 py-2 sm:py-3 text-gray-800 border-2 border-gray-300 rounded-lg focus:outline-none transition duration-200 ease-in-out focus:shadow-[5px_5px_0px_green]" />
             </div>
             {/if}
             <button type="submit" class="w-full py-2 sm:py-3 text-white bg-teal-500 rounded-lg hover:bg-teal-600 transition-all duration-200 ease-in-out shadow-md transform hover:scale-105 hover:shadow-[0px_10px_25px_rgba(0,0,0,0.3)]">
@@ -121,7 +121,7 @@
         </form>
 
         <div class="text-xs sm:text-sm text-center text-gray-500">
-            <p>{isLogin ? 'Belum punya akun?' : 'Sudah punya akun?'} <a href="#" on:click={toggleForm} class="text-teal-500 hover:text-teal-600 font-semibold">{isLogin ? 'Daftar sekarang' : 'Login sekarang'}</a></p>
+            <p>{isLogin ? 'Belum punya akun?' : 'Sudah punya akun?'} <a href="/login" on:click={toggleForm} class="text-teal-500 hover:text-teal-600 font-semibold">{isLogin ? 'Daftar sekarang' : 'Login sekarang'}</a></p>
         </div>
     </div>
 </div>

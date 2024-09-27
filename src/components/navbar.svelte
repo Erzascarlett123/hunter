@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getAuth, signOut } from 'firebase/auth';
-    import { goto } from '$app/navigation';
+    import { goto } from '$app/navigation'; 
     import Swal from 'sweetalert2';
 
     let mobileMenuVisible = false;
@@ -8,24 +8,21 @@
 
     async function handleLogout() {
         const auth = getAuth();
-        console.log('Trying to logout...'); // Log untuk debugging
+        // Tampilkan SweetAlert sebelum logout
+        await Swal.fire({
+            title: 'Logout',
+            text: 'Terima kasih telah menggunakan web kami, semoga anda puas dengan website kami !!',
+            icon: 'info',
+            showConfirmButton: false,
+            timer: 1500
+        });
 
         try {
-            // Tampilkan SweetAlert sebelum logout
-            await Swal.fire({
-                title: 'Logout',
-                text: 'Terima kasih telah menggunakan web kami, semoga anda puas dengan website kami !!',
-                icon: 'info',
-                showConfirmButton: false,
-                timer: 1500
-            });
-
-            // Logout dari Firebase
             await signOut(auth);
-            console.log('User logged out'); // Log jika logout berhasil
+            console.log('User logged out');
             goto('/login'); 
         } catch (error) {
-            console.error('Error logging out: ', error); // Log error jika ada
+            console.error('Error logging out: ', error);
         }
     }
 
@@ -38,6 +35,7 @@
         }, 500); // Durasi loading 0.5 detik
     }
 </script>
+
 
 <style>
     .mobile-menu {
@@ -71,7 +69,7 @@
 
         <div class="relative md:flex items-center space-x-4">
             <div class="hidden md:block">
-                <button on:click={handleLogout} class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-md">Logout</button>
+                <button on:click={handleLogout} class="py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-md hover:scale-110 duration-300">Logout</button>
             </div>
             <div class="md:hidden flex items-center">
                 <button on:click={() => mobileMenuVisible = !mobileMenuVisible} class="p-2">
@@ -87,6 +85,6 @@
         <button on:click={() => navigateTo('/dashboard')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
         <button on:click={() => navigateTo('/dashboard/contact')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Contact</button>
         <button on:click={() => navigateTo('/dashboard/finishing')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Tugas</button>
-        <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer">Logout</button>
+        <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer hover:scale-110 duration-300">Logout</button>
     </div>
 </nav>
