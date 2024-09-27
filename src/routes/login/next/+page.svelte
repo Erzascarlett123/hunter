@@ -1,6 +1,6 @@
 <script lang="ts">
   import Swal from 'sweetalert2';
-  import { userName, userClass } from '../../stores/userStore';
+  import { userName, userClass } from '../../../stores/userStore';
   import { goto } from '$app/navigation';
 
   let name = '';

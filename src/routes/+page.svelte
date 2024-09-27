@@ -1,40 +1,48 @@
 <script lang="ts">
-  // Data tugas statis
-  let assignments = [
-    { id: 1, name: 'Tugas Matematika', dueDate: '2024-09-25', status: 'Sudah Dikumpulkan' },
-    { id: 2, name: 'Tugas Bahasa Indonesia', dueDate: '2024-09-26', status: 'Belum Dikumpulkan' },
-    { id: 3, name: 'Tugas Sejarah', dueDate: '2024-09-27', status: 'Sudah Dikumpulkan' },
-  ];
+  import { onMount } from 'svelte';
+  import { goto } from '$app/navigation'; // Pastikan ini diimpor untuk navigasi
+
+  let showButton = false;
+  let showLogo = false; // Variabel untuk mengontrol tampilan logo
+
+  onMount(() => {
+      // Menampilkan tombol setelah beberapa detik
+      setTimeout(() => {
+          showButton = true;
+      }, 1000); // Ganti waktu delay sesuai kebutuhan
+
+      // Menampilkan logo setelah sedikit waktu
+      setTimeout(() => {
+          showLogo = true;
+      }, 500); // Logo muncul setelah 0.5 detik
+  });
+
+  function navigateToDashboard() {
+      // Navigasi ke halaman dashboard
+      goto('/dashboard'); // Pastikan ini mengarah ke halaman yang benar
+  }
 </script>
 
+<style>
+  /* Anda bisa menyimpan style CSS tambahan di sini jika diperlukan */
+</style>
 
-<div class="p-4">
-  <h2 class="text-xl font-bold mb-4">Daftar Tugas</h2>
-
-  <div class="overflow-x-auto">
-    <table class="min-w-full bg-white shadow-md rounded border border-gray-300">
-      <thead>
-        <tr class="bg-gray-100">
-          <th class="py-2 px-4 text-left">Nama Tugas</th>
-          <th class="py-2 px-4 text-left">Tanggal Pengumpulan</th>
-          <th class="py-2 px-4 text-left">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        {#each assignments as assignment}
-          <tr class="border-t border-gray-200">
-            <td class="py-2 px-4">{assignment.name}</td>
-            <td class="py-2 px-4">{assignment.dueDate}</td>
-            <td class="py-2 px-4">
-              {#if assignment.status === 'Sudah Dikumpulkan'}
-                <span class="text-green-500">✔ {assignment.status}</span>
-              {:else}
-                <span class="text-red-500">✘ {assignment.status}</span>
-              {/if}
-            </td>
-          </tr>
-        {/each}
-      </tbody>
-    </table>
-  </div>
+<div class="flex flex-col items-center justify-center h-screen bg-gray-100">
+  <h1 class="text-4xl font-bold text-gray-800 transition-opacity duration-500 delay-300 opacity-0 {showButton ? 'opacity-100 translate-y-0' : 'translate-y-8'}">Welcome To Tuaide Class!</h1>
+  
+  <img 
+      src="/image/logo.png" 
+      alt="Logo" 
+      class={`w-40 mt-5 transition-transform duration-300 hover:scale-105 border border-2 shadow-[6px_6px_0px_black] 
+              opacity-0 transform ${showLogo ? 'opacity-100 translate-y-0' : 'translate-y-8'}`}
+      style="transition: opacity 1s ease, transform 0.2s ease 0.1s;"
+  />
+  
+  <button 
+      class={`mt-8 py-2 px-6 text-white font-semibold rounded-md transition-all hover:scale-110 duration-300 ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'} bg-blue-600 hover:bg-blue-700 flex items-center`} 
+      on:click={navigateToDashboard}
+  >
+      Let's Go
+      <span class="ml-2 transition-transform duration-300 transform hover:translate-x-1">→</span>
+  </button>
 </div>

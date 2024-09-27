@@ -8,20 +8,24 @@
 
     async function handleLogout() {
         const auth = getAuth();
-        await Swal.fire({
-            title: 'Logout',
-            text: 'Terima kasih telah menggunakan web kami, semoga anda puas dengan website kami !!',
-            icon: 'info',
-            showConfirmButton: false,
-            timer: 1500
-        });
+        console.log('Trying to logout...'); // Log untuk debugging
 
         try {
+            // Tampilkan SweetAlert sebelum logout
+            await Swal.fire({
+                title: 'Logout',
+                text: 'Terima kasih telah menggunakan web kami, semoga anda puas dengan website kami !!',
+                icon: 'info',
+                showConfirmButton: false,
+                timer: 1500
+            });
+
+            // Logout dari Firebase
             await signOut(auth);
-            console.log('User logged out');
+            console.log('User logged out'); // Log jika logout berhasil
             goto('/login'); 
         } catch (error) {
-            console.error('Error logging out: ', error);
+            console.error('Error logging out: ', error); // Log error jika ada
         }
     }
 
@@ -60,10 +64,9 @@
         <img src="/image/logo.png" alt="Logo" class="h-12 md:h-16 lg:h-20">
 
         <div class="navbar-center hidden md:flex flex-grow justify-center">
-            <button on:click={() => navigateTo('/')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Home">Home</button>
-            <button on:click={() => navigateTo('/dashboard')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Dashboard">Dashboard</button>
-            <button on:click={() => navigateTo('/contact')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Contact">Contact</button>
-            <button on:click={() => navigateTo('/finishing')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Tugas">Tugas</button>
+            <button on:click={() => navigateTo('/dashboard')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Dashboard">Home</button>
+            <button on:click={() => navigateTo('/dashboard/contact')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Contact">Contact</button>
+            <button on:click={() => navigateTo('/dashboard/finishing')} class="py-5 px-3 text-gray-700 hover:text-gray-900" aria-label="Go to Tugas">Tugas</button>
         </div>
 
         <div class="relative md:flex items-center space-x-4">
@@ -81,10 +84,9 @@
     </div>
 
     <div class={`mobile-menu ${mobileMenuVisible ? 'visible' : ''} bg-white shadow-lg absolute right-0 mt-2 w-48 rounded-md overflow-hidden`}>
-        <button on:click={() => navigateTo('/home')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
-        <button on:click={() => navigateTo('/dashboard')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Dashboard</button>
-        <button on:click={() => navigateTo('/contact')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Contact</button>
-        <button on:click={() => navigateTo('/finishing')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Tugas</button>
+        <button on:click={() => navigateTo('/dashboard')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Home</button>
+        <button on:click={() => navigateTo('/dashboard/contact')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Contact</button>
+        <button on:click={() => navigateTo('/dashboard/finishing')} class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Tugas</button>
         <button on:click={handleLogout} class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200 cursor-pointer">Logout</button>
     </div>
 </nav>

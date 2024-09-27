@@ -8,7 +8,7 @@
 
   // Memantau perubahan pada path untuk menyembunyikan navbar pada halaman tertentu
   $: {
-    const hideNavbarOnPaths = ['/next', '/login'];
+    const hideNavbarOnPaths = ['/next', '/login', '/'];
     showNavbar = !hideNavbarOnPaths.includes($page.url.pathname);
   }
 </script>
